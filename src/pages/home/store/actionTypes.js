@@ -1,0 +1,2 @@
+export const CHANGE_TOPIC_LIST = 'home/GET_TOPIC_LIST';
+export const CHANGE_ARTICLE_LIST = 'home/CHANGE_ARTICLE_LIST';

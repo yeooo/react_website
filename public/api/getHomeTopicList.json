@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "data": [{
+    "id": 1,
+    "img": "https://upload.jianshu.io/users/upload_avatars/2564926/88bfdbeeb083.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp",
+    "title": "社会热点"
+  }, {
+    "id": "2",
+    "img": "https://upload.jianshu.io/users/upload_avatars/2594450/a5bbf755-a88e-42da-9eb7-eb4c0e895683.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp",
+    "title": "社会热点2"
+  }]
+}
