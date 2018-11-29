@@ -14,11 +14,11 @@ class Topic extends Component {
 
   getListArea(){
     const { list } = this.props;
-    // const jsList = list.toJS();// list是一个immutable对象 通过toJS方法转化为普通js对象
-    // console.log(list)
-    if (list.length > 0) {
+    const jsList = list.toJS();// list是一个immutable对象 通过toJS方法转化为普通js对象
+    // console.log(jsList.length)
+    if (jsList.length > 0) {
       return (
-        list.map((item)=>{
+        jsList.map((item)=>{
           return(
             <TopicItem key={item.id}>
               <img

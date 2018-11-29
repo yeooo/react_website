@@ -10,20 +10,25 @@ import {
 class List extends Component {
   getData(){
     const { list } = this.props;
-    console.log(list)
-    list.map((item)=>{
-      return(
-        <ListItem>
-          <img
-          className="list-img"
-          src={item.img} alt=""/>
-          <ListInfo>
-            <h3 className="title">{item.title}</h3>
-            <p className="desc">{item.desc}</p>
-          </ListInfo>
-        </ListItem>
-      )
-    })
+    const jsList = list.toJS();    
+    if(jsList.length > 0){
+      return jsList.map((item)=>{
+        return(
+          <ListItem key={item.id}>
+            <img
+            className="list-img"
+            src={item.img} alt=""/>
+            <ListInfo>
+              <h3 className="title">{item.title}</h3>
+              <p className="desc">{item.desc}</p>
+            </ListInfo>
+          </ListItem>
+        )
+      })
+    }else{
+      return null;
+    }
+    
   }
 
   componentWillMount(){
@@ -32,7 +37,7 @@ class List extends Component {
 
   render(){
     return(
-      <div>{this.getData()}</div>
+      <div>{ this.getData() }</div>
     )
   }
 }

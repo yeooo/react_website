@@ -15,8 +15,7 @@ export const NavContainer = styled.div `
 
 export const Logo = styled.a.attrs({
   href: '/'
-})
-`
+})`
   float:left;
   display:block;
   width:100px;
@@ -119,8 +118,7 @@ export const SearchInfoItem = styled.a `
 
 export const NavSearch = styled.input.attrs({
   placeholder: '搜索'
-})
-`
+})`
   margin-top:9px;
   margin-left:20px;
   padding:0 35px 0 20px;

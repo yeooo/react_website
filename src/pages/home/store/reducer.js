@@ -5,7 +5,8 @@ import * as actionTypes from "./actionTypes";
 
 const defaultSate = fromJS({
   topicList: [],
-  articleList: []
+  articleList: [],
+  recommendList:[]
 });
 
 export default (state = defaultSate, action) => {
@@ -14,6 +15,8 @@ export default (state = defaultSate, action) => {
       return state.set('topicList', action.value);
     case actionTypes.CHANGE_ARTICLE_LIST:
       return state.set('articleList', action.value);
+    case actionTypes.CHANGE_RECOMMEND_LIST:
+      return state.set('recommendList', action.value);
     default:
       return state;
   }
