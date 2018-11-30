@@ -14,9 +14,10 @@ export const changeArticleList = (value) => ({
   value: fromJS(value) //将接收到的data js对象 转换为 immutable对象
 });
 
-export const changeRecommendList = (value) => ({
+export const changeRecommendList = (value,page) => ({
   type: actionTypes.CHANGE_RECOMMEND_LIST,
-  value: fromJS(value) //将接收到的data js对象 转换为 immutable对象
+  value: fromJS(value), //将接收到的data js对象 转换为 immutable对象
+  page
 })
 
 export const getTopicList = () => {
@@ -43,12 +44,11 @@ export const getArticleList = () => {
   }
 }
 
-export const getRecommendList = () => {
+export const getRecommendList = (page) => {
   return (dispatch) => {
-    console.log(1)
-    axios.get('/api/getHomeRecommendList..json')
+    axios.get('/api/getHomeRecommendList.json?page=' + page)
       .then((res) => {
-        dispatch(changeRecommendList(res.data.data));
+        dispatch(changeRecommendList(res.data.data, page + 1));
       })
       .catch(() => {
         console.log('error in getRecommendList');

@@ -1,6 +1,8 @@
 import React, {
   Component
 } from 'react';
+import { connect } from 'react-redux';
+import * as actionCreators from './store/actionCreators'
 import Topic from './component/Topic';
 import List from './component/List';
 import Recommend from './component/Recommend';
@@ -17,7 +19,10 @@ class Home extends Component {
       <HomeWrapper>
         <HomeLeft>
           <img 
-          className="banner-img" src="https://upload.jianshu.io/admin_banners/web_images/4579/0e3caa20d3d30658dc4b393d1ea105baa7e78248.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540" alt=""></img>
+            className="banner-img" 
+            src="https://upload.jianshu.io/admin_banners/web_images/4579/0e3caa20d3d30658dc4b393d1ea105baa7e78248.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/1250/h/540" 
+            alt="">
+          </img>
           <Topic></Topic>
           <List></List>
         </HomeLeft>
@@ -28,5 +33,26 @@ class Home extends Component {
       </HomeWrapper>
     )
   }
+  componentDidMount(){
+    const { getList,getListData,getArticleData } = this.props;
+    getList();
+    getArticleData();
+    getListData();
+  }
 }
-export default Home;
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    getArticleData(){
+      dispatch(actionCreators.getArticleList());
+    },
+    getListData(){
+      dispatch(actionCreators.getTopicList());
+    },
+    getList(){
+      dispatch(actionCreators.getRecommendList());
+    }
+  }
+};
+
+export default connect(null,mapDispatchToProps)(Home);
