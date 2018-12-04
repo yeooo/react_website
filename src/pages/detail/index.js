@@ -1,26 +1,33 @@
-import React,{ Component } from 'react';
-import { DetailWrapper,
-          Header,
-          Content } from './style';
+import React,{ PureComponent } from 'react';
+import { connect } from 'react-redux';
+import * as actionCreators from './store/actionCreators';
+import { DetailWrapper,Header,Content } from './style';
 
-class Detail extends Component {
+class Detail extends PureComponent {
   render(){
+    const { title ,content} = this.props;
     return(
       <DetailWrapper>
-        <Header>“你见过魔鬼么？” “我带你看看人性”</Header>
-        <Content>
-          <p>
-          他演过无数大反派，可能你记不住他的名字，但只要看到他的照片一定会恍然大悟地说一句，
-          </p>
-          <p>
-          <b>他演过无数大反派，</b>可能你记不住他的名字，但只要看到他的照片一定会恍然大悟地说一句，
-          </p>
-          <img
-          alt =""
-          src = "https://upload-images.jianshu.io/upload_images/12649257-c7f44f81517d6ff6?imageMogr2/auto-orient/strip%7CimageView2/2/w/640/format/webp"></img>
-        </Content>
+        <Header>{title}</Header>
+        <Content dangerouslySetInnerHTML={{__html: content}}/>
       </DetailWrapper>
     )
   }
+
+  componentDidMount(){
+    this.props.getData(this.props.match.params.id)
+  }
 }
-export default Detail;
+
+const mapStateToProps=(state)=>({
+  title: state.getIn(['detail','title']),
+  content: state.getIn(['detail','content'])
+});
+
+const mapDispatchToProps=(dispatch)=>({
+  getData(id){
+    dispatch(actionCreators.getDetail(id));
+  }
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Detail);

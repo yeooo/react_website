@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import logoPic from '../../statics/logo.png'
 
 export const HeaderWrapper = styled.div `
-  height:58px;
+  position:relative;
+  height:56px;
   border-bottom:1px solid #f0f0f0;
 `
 
@@ -13,7 +14,7 @@ export const NavContainer = styled.div `
   margin:0 auto;
 `
 
-export const Logo = styled.div`
+export const Logo = styled.div `
   float:left;
   display:block;
   width:100px;
@@ -44,6 +45,7 @@ export const NavItem = styled.div `
 
 export const SearchWrapper = styled.div `
   position:relative;
+  z-index:99;
   float:left;
   .zoom {
     position:absolute;
@@ -116,7 +118,8 @@ export const SearchInfoItem = styled.a `
 
 export const NavSearch = styled.input.attrs({
   placeholder: '搜索'
-})`
+})
+`
   margin-top:9px;
   margin-left:20px;
   padding:0 35px 0 20px;
@@ -156,7 +159,7 @@ export const Addition = styled.div `
   height:56px;
 `
 
-export const AdditionLink = styled.a `
+export const AdditionLink = styled.div `
   display:block;
   float:right;
   margin-top:9px;

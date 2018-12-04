@@ -1,5 +1,5 @@
 import React, {
-  Component
+  PureComponent
 } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from './store/actionCreators'
@@ -14,7 +14,7 @@ import {
   HomeRight
 } from './style';
 
-class Home extends Component {
+class Home extends PureComponent {
   render() {
     return ( 
       <HomeWrapper>

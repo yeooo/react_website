@@ -58,7 +58,7 @@ class Header extends PureComponent {
 
   render(){
     // 结构赋值
-    const { focused, handleInputFocused, handleInputBlur,list } = this.props;
+    const { focused, handleInputFocused, handleInputBlur,list,loginStatus,userName } = this.props;
     return ( 
       <HeaderWrapper> 
         <NavContainer>
@@ -89,10 +89,13 @@ class Header extends PureComponent {
           </Nav>
           <Addition>
             <AdditionLink className="btn">注册</AdditionLink>
-            <AdditionLink className="btn writing">
-            <i className="iconfont">&#xe615;</i>
-            写文章</AdditionLink>
-            <AdditionLink>登录</AdditionLink>
+            <Link to="/write">
+              <AdditionLink className="btn writing">
+              <i className="iconfont">&#xe615;</i>
+              写文章</AdditionLink>
+            </Link>
+            {loginStatus?<AdditionLink>{userName}</AdditionLink>:<Link to="/login"><AdditionLink >登录</AdditionLink></Link>}
+            
             <AdditionLink>
             <i className="iconfont">&#xe636;</i>
             </AdditionLink>
@@ -111,7 +114,9 @@ const mapStateToProps = (state) => {
     list: state.getIn(['header','list']),
     page: state.getIn(['header','page']),
     totalPage:state.getIn(['header','totalPage']),
-    mouseIn: state.getIn(['header','mouseIn'])
+    mouseIn: state.getIn(['header','mouseIn']),
+    loginStatus:state.getIn(['login','loginStatus']),
+    userName:state.getIn(['login','userName'])
   }
 }
 
