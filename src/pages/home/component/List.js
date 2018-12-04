@@ -1,30 +1,40 @@
-import React,{ Component } from 'react';
+import React,{ PureComponent } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../store/actionCreators';
+import { Link } from 'react-router-dom'
 import {
   ListItem,
   ListInfo,
   LoadMore
 } from '../style';
 
-class List extends Component {
+class List extends PureComponent {
   getData(){
-    const { list } = this.props;
-    const jsList = list.toJS();    
+    const { list,page ,getMore} = this.props;
+    const jsList = list.toJS();
     if(jsList.length > 0){
-      return jsList.map((item,index)=>{
-        return(
-          <ListItem key={ index }>
-            <img
-            className="list-img"
-            src={item.img} alt=""/>
-            <ListInfo>
-              <h3 className="title">{item.title}</h3>
-              <p className="desc">{item.desc}</p>
-            </ListInfo>
-          </ListItem>
-        )
-      })
+      return (
+        <div>
+        {
+          jsList.map((item,index)=>{
+            return(
+              <Link key={ index } to="/detail">
+                <ListItem>
+                  <img
+                  className="list-img"
+                  src={item.img} alt=""/>
+                  <ListInfo>
+                    <h3 className="title">{item.title}</h3>
+                    <p className="desc">{item.desc}</p>
+                  </ListInfo>
+                </ListItem>
+              </Link>
+            )
+          })
+        }
+        <LoadMore onClick={()=>getMore(page) }>加载更多</LoadMore>
+        </div>
+      )
     }else{
       return null;
     } 
@@ -34,7 +44,6 @@ class List extends Component {
     return(
       <div>
         { this.getData() }
-        <LoadMore onClick={()=>this.props.getMore(this.props.page) }>加载更多</LoadMore>
       </div>
     )
   }
@@ -47,8 +56,7 @@ const mapStateToProps=(state)=>({
 
 const mapDispatchToProps=(dispatch)=>({
   getMore(page){
-    console.log(page);
-    dispatch(actionCreators.getRecommendList(page));
+    dispatch(actionCreators.getArticleList(page));
   }
 })
 

@@ -1,7 +1,9 @@
-import React,{ Component } from 'react';
+import React,{ PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import  { actionCreators }   from './store';
+
 import {
   HeaderWrapper,
   Logo,
@@ -19,7 +21,7 @@ import {
   SearchInfoItem
 } from './style';
 
-class Header extends Component {
+class Header extends PureComponent {
   getListArea(){
     // 结构赋值
     const { focused,mouseIn, list, page,totalPage, handleMouseEnter, handleMouseLeave,handleSwitchClick } = this.props;
@@ -60,7 +62,9 @@ class Header extends Component {
     return ( 
       <HeaderWrapper> 
         <NavContainer>
-          <Logo/>
+          <Link to="/">
+            <Logo/>
+          </Link>
           <Nav>
             <NavItem className="left active">
             <i className="iconfont">&#xe627;</i> 首页

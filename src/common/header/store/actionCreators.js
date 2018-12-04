@@ -1,27 +1,27 @@
-import * as actionTypes from "./actionTypes";
+import * as constant from "./constant";
 import {
   fromJS
 } from 'immutable';
 import axios from 'axios';
 
 const changeList = (value) => ({
-  type: actionTypes.CHANGE_HEADER_LIST,
+  type: constant.CHANGE_HEADER_LIST,
   value: fromJS(value), //将接收到的data js对象 转换为 immutable对象
   totalPage: Math.ceil(value.length / 10)
 });
 
 export const searchFocus = (value) => ({
-  type: actionTypes.CHANGE_HEADER_FOCCUS,
+  type: constant.CHANGE_HEADER_FOCCUS,
   value
 });
 
 export const changeMouseState = (value) => ({
-  type: actionTypes.CHANGE_HEADER_MOUSE,
+  type: constant.CHANGE_HEADER_MOUSE,
   value
 });
 
 export const changePage = (value) => ({
-  type: actionTypes.CHANGE_HEADER_PAGE,
+  type: constant.CHANGE_HEADER_PAGE,
   value
 });
 

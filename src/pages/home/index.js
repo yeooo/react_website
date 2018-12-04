@@ -7,6 +7,7 @@ import Topic from './component/Topic';
 import List from './component/List';
 import Recommend from './component/Recommend';
 import Writer from './component/Writer';
+import ScrollTop from './component/ScrollTop';
 import {
   HomeWrapper,
   HomeLeft,
@@ -30,6 +31,7 @@ class Home extends Component {
           <Recommend></Recommend>
           <Writer></Writer>
         </HomeRight>
+        <ScrollTop></ScrollTop>
       </HomeWrapper>
     )
   }
@@ -41,18 +43,16 @@ class Home extends Component {
   }
 }
 
-const mapDispatchToProps=(dispatch)=>{
-  return{
-    getArticleData(){
-      dispatch(actionCreators.getArticleList());
-    },
-    getListData(){
-      dispatch(actionCreators.getTopicList());
-    },
-    getList(){
-      dispatch(actionCreators.getRecommendList());
-    }
+const mapDispatchToProps=(dispatch)=>({
+  getArticleData(){
+    dispatch(actionCreators.getArticleList());
+  },
+  getListData(){
+    dispatch(actionCreators.getTopicList());
+  },
+  getList(){
+    dispatch(actionCreators.getRecommendList());
   }
-};
+});
 
 export default connect(null,mapDispatchToProps)(Home);

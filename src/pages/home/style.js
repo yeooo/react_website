@@ -111,3 +111,16 @@ export const WriterWrapper = styled.div `
   height:300px;
   line-height:300px;
 `
+
+export const ScrollTopWrapper = styled.div `
+  position:fixed;
+  right:100px;
+  bottom:100px;
+  width:60px;
+  height:60px;
+  text-align:center;
+  line-height:60px;
+  font-size:12px;
+  border:1px solid #ccc;
+  cursor:pointer;
+`;

@@ -1,4 +1,4 @@
-import * as actionTypes from "./actionTypes";
+import * as constant from "./constant";
 import {
   fromJS
 } from 'immutable';
@@ -15,12 +15,12 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch (action.type) {
 
-    case actionTypes.CHANGE_HEADER_FOCCUS:
+    case constant.CHANGE_HEADER_FOCCUS:
       // immutable对象的set方法,会结合之前immutable对象的值
       // 和设置的值,返回一个全新的对象
       return state.set('focused', action.value);
 
-    case actionTypes.CHANGE_HEADER_LIST:
+    case constant.CHANGE_HEADER_LIST:
       // return state.set('list', action.value).set('totalPage', action.totalPage);
       // merge方法更高 只需执行一次
       return state.merge({
@@ -28,10 +28,10 @@ export default (state = defaultState, action) => {
         totalPage: action.totalPage
       })
 
-    case actionTypes.CHANGE_HEADER_MOUSE:
+    case constant.CHANGE_HEADER_MOUSE:
       return state.set('mouseIn', action.value);
 
-    case actionTypes.CHANGE_HEADER_PAGE:
+    case constant.CHANGE_HEADER_PAGE:
       return state.set('page', action.value);
 
     default:

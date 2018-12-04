@@ -1,9 +1,9 @@
 import reducer from './reducer';
 import * as actionCreators from './actionCreators';
-import * as actionTypes from './actionTypes'
+import * as constant from './constant'
 
 export {
   reducer,
   actionCreators,
-  actionTypes
+  constant
 };

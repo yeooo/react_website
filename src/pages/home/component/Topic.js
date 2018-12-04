@@ -1,5 +1,5 @@
 import React, {
-  Component
+  PureComponent
 } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -8,7 +8,7 @@ import {
 } from '../style';
 
 
-class Topic extends Component {
+class Topic extends PureComponent {
 
   getListArea(){
     const { list } = this.props;

@@ -1,24 +1,30 @@
-import * as actionTypes from "./actionTypes";
+import * as constant from "./constant";
 import axios from 'axios';
 import {
   fromJS
 } from 'immutable';
 
 export const changeTopicList = (value) => ({
-  type: actionTypes.CHANGE_TOPIC_LIST,
+  type: constant.CHANGE_TOPIC_LIST,
   value: fromJS(value) //将接收到的data js对象 转换为 immutable对象
 });
 
-export const changeArticleList = (value) => ({
-  type: actionTypes.CHANGE_ARTICLE_LIST,
-  value: fromJS(value) //将接收到的data js对象 转换为 immutable对象
-});
-
-export const changeRecommendList = (value,page) => ({
-  type: actionTypes.CHANGE_RECOMMEND_LIST,
+export const changeArticleList = (value, page) => ({
+  type: constant.CHANGE_ARTICLE_LIST,
   value: fromJS(value), //将接收到的data js对象 转换为 immutable对象
-  page
-})
+  page: fromJS(page)
+});
+
+export const changeRecommendList = (value) => ({
+  type: constant.CHANGE_RECOMMEND_LIST,
+  value: fromJS(value) //将接收到的data js对象 转换为 immutable对象
+
+});
+
+export const changeScrollShow = (show)=>({
+  type:constant.CHANGE_SCROLL_SHOW,
+  show
+});
 
 export const getTopicList = () => {
   return (dispatch) => {
@@ -32,11 +38,11 @@ export const getTopicList = () => {
   }
 }
 
-export const getArticleList = () => {
+export const getArticleList = (page = 0) => {
   return (dispatch) => {
-    axios.get('/api/getHomeArticleList.json')
+    axios.get('/api/getHomeArticleList.json?page=' + page)
       .then((res) => {
-        dispatch(changeArticleList(res.data.data));
+        dispatch(changeArticleList(res.data.data, page + 1));
       })
       .catch(() => {
         console.log('error in getHomeArticleList');
@@ -44,11 +50,12 @@ export const getArticleList = () => {
   }
 }
 
-export const getRecommendList = (page) => {
+
+export const getRecommendList = () => {
   return (dispatch) => {
-    axios.get('/api/getHomeRecommendList.json?page=' + page)
+    axios.get('/api/getHomeRecommendList.json')
       .then((res) => {
-        dispatch(changeRecommendList(res.data.data, page + 1));
+        dispatch(changeRecommendList(res.data.data));
       })
       .catch(() => {
         console.log('error in getRecommendList');
